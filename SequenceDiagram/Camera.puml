@@ -1,0 +1,16 @@
+@startuml
+title AutoRunAll时序图
+autonumber
+hide footbox
+actor 用户 as U
+U ->> PhotoMoudleExtend: 点击拍照
+PhotoMoudleExtend -> PhotoMoudleExtend : capture 获取经纬度
+PhotoMoudleExtend -> JpegPictureCallbackExtend : takePicture
+JpegPictureCallbackExtend -> PhotoMoudleExtend : onPictureTaken
+PhotoMoudleExtend -> PhotoMoudleExtend : onJpegDataTaken
+activate PhotoMoudleExtend
+PhotoMoudleExtend -> PhotoMoudleExtend: saveFinalPhoto
+activate PhotoMoudleExtend
+PhotoMoudleExtend -> MediaSaver: addImage
+activate MediaSaver
+@enduml

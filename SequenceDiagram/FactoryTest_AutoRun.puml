@@ -1,0 +1,34 @@
+@startuml
+title 点击'自动测试'时序图
+hide footbox
+autonumber 1 1
+LauncherActivity -> AutoPanelActivity: onClick()
+activate LauncherActivity
+activate AutoPanelActivity
+deactivate AutoPanelActivity
+AutoPanelActivity ->> AutoPanelActivity: start()
+activate AutoPanelActivity
+deactivate AutoPanelActivity
+AutoPanelActivity ->AutoPanelActivity: onCreate()
+activate AutoPanelActivity
+AutoPanelActivity -> BaseFragment :handleConfig()
+note over BaseFragment:每个BaseFragment子类就是一个测试项
+activate AutoPanelActivity
+activate BaseFragment
+BaseFragment ->> BaseTestActivity: 继承类自动或者\n点击测试完毕后
+activate BaseFragment
+activate BaseTestActivity
+BaseTestActivity -> BaseTestActivity: showTwoBtnDelay()
+autonumber 5
+activate BaseTestActivity
+BaseFragment ->> BaseTestActivity:testPass()
+deactivate BaseFragment
+deactivate AutoPanelActivity
+deactivate AutoPanelActivity
+BaseTestActivity -> AutoPanelActivity:testPass()
+activate BaseTestActivity
+activate AutoPanelActivity
+AutoPanelActivity ->> AutoPanelActivity:testPass()跳转\n下一个测试项
+activate AutoPanelActivity
+
+@enduml

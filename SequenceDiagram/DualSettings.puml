@@ -1,0 +1,19 @@
+@startuml
+title 应用双开时序图
+hide footbox
+autonumber
+AppSettingsPresenter -> AppSettingsPresenter: onSwitchChecked
+activate AppSettingsPresenter
+== 安装应用 ==
+AppSettingsPresenter -> AppSettingsPresenter: installDualApp
+activate AppSettingsPresenter
+deactivate AppSettingsPresenter
+== 当取消选择时 卸载多开应用 ==
+autonumber 2
+AppSettingsPresenter -> AppSettingsFragment: showDialogView
+activate AppSettingsPresenter
+activate AppSettingsFragment
+AppSettingsFragment -> AppSettingsPresenter: uninstallDualApp
+activate AppSettingsFragment
+activate AppSettingsPresenter
+@enduml
