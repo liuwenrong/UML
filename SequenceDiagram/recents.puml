@@ -1,0 +1,26 @@
+@startuml
+title 最近任务时序图
+hide footbox
+'autonumber
+'== 分屏 ==
+'RecentsView -> SystemServicesProxy:onBusEvent()
+'SystemServicesProxy -> IActivityManager:replaceSplitedTask()
+'activate SystemServicesProxy
+'activate IActivityManager
+'IActivityManager -> ActivityManagerNative: startActivityFromRecents
+
+autonumber 1
+== 最近任务跳转Activity ==
+Recents -> RecentsImpl:hideRecents()
+activate RecentsImpl
+RecentsImpl -> RecentsImpl:hideRecents()
+activate RecentsImpl
+RecentsImpl -> SystemServicesProxy:showNextTask()
+activate SystemServicesProxy
+SystemServicesProxy -> IActivityManager:startActivityFromRecents()
+activate SystemServicesProxy
+activate IActivityManager
+IActivityManager -> ActivityManagerNative: startActivityFromRecents
+
+
+@enduml
